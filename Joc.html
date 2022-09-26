@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML, CSS and JavaScript demo</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Anek+Telugu:300,400,600,700&amp;lang=en" />
+<style>      
+
+body{ 
+    background: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f7cd4a5-8ac9-4320-b2a8-7d111cc0dfcf/d8hedyc-f8b2b324-d7c2-4019-91cd-cc5ed6b3eb69.png/v1/fill/w_640,h_640,q_80,strp/grass_pixel_art_textures_by_txturs_d8hedyc-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjQwIiwicGF0aCI6IlwvZlwvNWY3Y2Q0YTUtOGFjOS00MzIwLWIyYTgtN2QxMTFjYzBkZmNmXC9kOGhlZHljLWY4YjJiMzI0LWQ3YzItNDAxOS05MWNkLWNjNWVkNmIzZWI2OS5wbmciLCJ3aWR0aCI6Ijw9NjQwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.TgZuDOAIXCWwXWwVUzPCY1ZxpUu8y8bCL9jeQuBwKGc);
+    background-size: cover;
+    background-position: center;
+    height:100%;
+ }
+
+ #hero {
+    position: relative;
+ }
+
+ #apple {
+    position: relative;
+ }
+
+ #score {
+    position: relative;
+    background: white;
+    max-width: 200px;
+    right: 0;
+ }
+
+ div {
+    background-color: white;
+    max-width: 120px;
+    text-align: center;
+ }
+
+</style>
+</head>
+
+
+<body>
+
+    <img id="hero" src="https://art.pixilart.com/63543df625404cc.png" width="100" alt=" hero ">
+    <img id="apple" src="https://papik.pro/en/uploads/posts/2022-06/1655500002_26-papik-pro-p-apple-pixel-drawings-28.png" width="50" >
+    <div id="score-container">Scorul tau este <span id="score">0</span></div>
+    <script>
+        var hero = document.getElementById("hero");
+        var apple = document.getElementById("apple");
+        var scoreLabel = document.getElementById("score");
+
+
+        var x = 0;
+        var y = 0;
+
+        var score = 0 ;
+
+
+        var appleX = 0 + Math.random() * 200;
+        var appleY = 0 + Math.random() * -500;
+        var direction = "stop";
+
+        function respawnApple() {
+            appleX = 0 + Math.random() * 200;
+            appleY = 0 + Math.random() * -500;
+        }
+
+        var speed= 0.7;
+
+        setInterval(function() {
+            if (direction == "right") {
+                hero.style.left = x + 'px';
+                x = x + speed;
+            } else if (direction == "left") {
+                hero.style.left = x + 'px';
+                x = x - speed;
+            } else if ( direction == "up"){
+                hero.style.bottom = y +"px";
+                y = y + speed;
+            } else if ( direction == "down"){
+                hero.style.bottom = y +"px";
+                y = y - speed;
+            }
+
+            if (Math.abs(appleX - x) < 50 && Math.abs(appleY - y) < 50) {
+                respawnApple();
+                score++; 
+                scoreLabel.innerHTML = score;
+            }
+
+            apple.style.left = appleX + 'px';
+            apple.style.bottom = appleY + 'px';
+            
+        }, 60 / 100); // FPS
+
+        document.addEventListener("keydown", function(event) {
+            //alert('ai apasat'+ event.keyCode)
+             if (event.keyCode == 65 || event.keyCode == 37) {
+                direction = "left";
+            } else if (event.keyCode == 68 || event.keyCode == 39) {
+                direction = "right";
+            } else if ( event.keyCode == 87 || event.keyCode == 38){
+                direction = "up"
+            } else if ( event.keyCode == 83 || event.keyCode == 40){
+                direction ="down"
+            }
+        }, false);
+
+        document.addEventListener("keyup", function(event) {
+            if (event.keyCode == 65 || event.keyCode == 37) {
+                direction = "stop";
+            } else if (event.keyCode == 68 || event.keyCode == 39) {
+                direction = "stop";
+            } else if (event.keyCode == 87 || event.keyCode == 38){
+                direction ="stop"
+            }else if (event.keyCode == 83 || event.keyCode == 40){
+                direction ="stop"
+            }
+        }, false);
+        
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
